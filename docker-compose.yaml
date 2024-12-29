@@ -17,13 +17,13 @@ services:
     
 
     ## For Nvidia GPU's - You probably want to uncomment this
-    #deploy:
-    #  resources:
-    #    reservations:
-    #      devices:
-    #        - driver: nvidia
-    #          count: all
-    #          capabilities: [gpu]
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
 
     devices:
       - "/dev/dri:/dev/dri"
@@ -32,7 +32,8 @@ services:
     
     volumes:
       # Workspace
-      - ./workspace:${WORKSPACE:-/workspace/}:rshared
+  #    - ./workspace:${WORKSPACE:-/workspace/}:rshared
+      - ./workspace:${WORKSPACE:-/workspace/}
       # You can share /workspace/storage with other non-WEBUI containers. See README
       #- /path/to/common_storage:${WORKSPACE:-/workspace/}storage/:rshared
       # Will echo to root-owned authorized_keys file;
